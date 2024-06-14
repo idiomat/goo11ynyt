@@ -1,0 +1,45 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/idiomat/goo11ynyt/benchmarking/wordlens/optimized
+BenchmarkFindPalindromes/25-8         	 6887496	       154.5 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7709070	       153.8 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7707412	       161.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7723220	       154.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 6657597	       155.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7688935	       154.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7792106	       154.3 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7812643	       199.4 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7627429	       158.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/25-8         	 7582220	       157.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkFindPalindromes/50-8         	 1000000	      1280 ns/op	    1370 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1371324	       876.6 ns/op	    1370 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1354190	       888.1 ns/op	    1371 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1393686	       884.5 ns/op	    1370 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1310724	       845.2 ns/op	    1371 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1373640	      1008 ns/op	    1371 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1324628	       851.8 ns/op	    1370 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1391211	       828.4 ns/op	    1370 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1429286	       858.3 ns/op	    1370 B/op	       2 allocs/op
+BenchmarkFindPalindromes/50-8         	 1347831	       829.0 ns/op	    1370 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1071 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1042 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1051 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1040 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1044 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1044 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1043 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1052 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1043 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1042 ns/op	    1414 B/op	       2 allocs/op
+BenchmarkFindPalindromes/100-8        	  618550	      1719 ns/op	    3314 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  644259	      1749 ns/op	    3313 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  640963	      1738 ns/op	    3314 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  636975	      1759 ns/op	    3314 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  627584	      1722 ns/op	    3314 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  641410	      1724 ns/op	    3313 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  641762	      1719 ns/op	    3314 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  639453	      1724 ns/op	    3313 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  660934	      1721 ns/op	    3314 B/op	       4 allocs/op
+BenchmarkFindPalindromes/100-8        	  651400	      1732 ns/op	    3314 B/op	       4 allocs/op
+PASS
+ok  	github.com/idiomat/goo11ynyt/benchmarking/wordlens/optimized	56.895s

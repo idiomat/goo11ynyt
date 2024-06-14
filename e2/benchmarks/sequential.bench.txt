@@ -1,0 +1,45 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/idiomat/goo11ynyt/e2
+BenchmarkFindPalindromes/25-8         	 4545944	       240.7 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 5027426	       238.8 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 4907334	       238.1 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 5022300	       242.4 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 5058500	       237.2 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 5065365	       243.2 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 5072779	       255.1 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 5026794	       237.3 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 5069052	       237.3 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/25-8         	 4981033	       242.1 ns/op	     272 B/op	       3 allocs/op
+BenchmarkFindPalindromes/50-8         	 1283155	       934.9 ns/op	    1642 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1290571	       931.2 ns/op	    1642 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1276447	       932.8 ns/op	    1642 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1285215	       935.6 ns/op	    1643 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1281254	       932.6 ns/op	    1642 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1281698	       948.9 ns/op	    1642 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1284656	       935.6 ns/op	    1643 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1000000	      1192 ns/op	    1642 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1284711	       934.8 ns/op	    1643 B/op	       5 allocs/op
+BenchmarkFindPalindromes/50-8         	 1281224	       943.0 ns/op	    1643 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1143 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1141 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1155 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1138 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1149 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1140 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1138 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1169 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	  999225	      1150 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/75-8         	 1000000	      1140 ns/op	    1686 B/op	       5 allocs/op
+BenchmarkFindPalindromes/100-8        	  635336	      1821 ns/op	    3585 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  656749	      1826 ns/op	    3585 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  660847	      1814 ns/op	    3586 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  665978	      1822 ns/op	    3586 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  661556	      1822 ns/op	    3585 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  667471	      1819 ns/op	    3585 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  659150	      1822 ns/op	    3585 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  666150	      1845 ns/op	    3586 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  662252	      1855 ns/op	    3586 B/op	       7 allocs/op
+BenchmarkFindPalindromes/100-8        	  662628	      1836 ns/op	    3586 B/op	       7 allocs/op
+PASS
+ok  	github.com/idiomat/goo11ynyt/e2	59.233s

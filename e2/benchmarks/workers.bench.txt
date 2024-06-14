@@ -1,0 +1,45 @@
+goos: darwin
+goarch: arm64
+pkg: github.com/idiomat/goo11ynyt/e2
+BenchmarkFindPalindromes/25-8         	  127038	      9439 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  128556	      9300 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  127108	      9415 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  124190	      9315 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  127622	      9325 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  126896	      9390 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  122408	      9316 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  125604	      9423 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  127078	      9340 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/25-8         	  126394	      9376 ns/op	    1170 B/op	      14 allocs/op
+BenchmarkFindPalindromes/50-8         	   70732	     16902 ns/op	    3023 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   70986	     16971 ns/op	    3024 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   70148	     18184 ns/op	    3022 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   70516	     16943 ns/op	    3023 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   70610	     17353 ns/op	    3023 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   71125	     17180 ns/op	    3023 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   67458	     17589 ns/op	    3023 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   65299	     17432 ns/op	    3022 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   69896	     18496 ns/op	    3023 B/op	      16 allocs/op
+BenchmarkFindPalindromes/50-8         	   69049	     17500 ns/op	    3023 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   49101	     24938 ns/op	    3452 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   49272	     24715 ns/op	    3452 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   49390	     24182 ns/op	    3451 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   50047	     23878 ns/op	    3451 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   49789	     23928 ns/op	    3452 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   50152	     23879 ns/op	    3452 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   50215	     23851 ns/op	    3451 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   50175	     23852 ns/op	    3451 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   49696	     25546 ns/op	    3450 B/op	      16 allocs/op
+BenchmarkFindPalindromes/75-8         	   47620	     24412 ns/op	    3449 B/op	      16 allocs/op
+BenchmarkFindPalindromes/100-8        	   37531	     31971 ns/op	    5863 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   37803	     31780 ns/op	    5863 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   37585	     32171 ns/op	    5864 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   35827	     33340 ns/op	    5862 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   37224	     32920 ns/op	    5862 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   37854	     34080 ns/op	    5864 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   37819	     31851 ns/op	    5864 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   38079	     31798 ns/op	    5863 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   37490	     35630 ns/op	    5864 B/op	      18 allocs/op
+BenchmarkFindPalindromes/100-8        	   37148	     31464 ns/op	    5863 B/op	      18 allocs/op
+PASS
+ok  	github.com/idiomat/goo11ynyt/e2	59.862s
