@@ -23,4 +23,6 @@ go.work.sum
 
 profiling/profiles
 tracing/traces
-benchmarking/benchmarks
+benchmarking/wordlens/benchmarks
+benchmarking/e1/benchmarks
+benchmarking/e2/benchmarks

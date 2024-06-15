@@ -12,13 +12,16 @@ import (
 	"github.com/idiomat/goo11ynyt/otel/embed"
 	"github.com/pgvector/pgvector-go"
 	"go.opentelemetry.io/otel"
+	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace"
 	"go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc"
 	"go.opentelemetry.io/otel/propagation"
 	"go.opentelemetry.io/otel/sdk/trace"
+	oteltrace "go.opentelemetry.io/otel/trace"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
+	"gorm.io/gorm/logger"
 	"gorm.io/plugin/opentelemetry/tracing"
 )
 
@@ -31,9 +34,28 @@ func init() {
 
 	var err error
 	var dsn = "postgres://postgres:password@localhost:5432/test?sslmode=disable"
-	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err = gorm.Open(postgres.Open(dsn), &gorm.Config{
+		Logger:          logger.Default.LogMode(logger.Silent),
+		CreateBatchSize: 1000,
+	})
 	if err != nil {
 		log.Fatalln("failed to connect database", err)
+	}
+
+	if err := db.Use(tracing.NewPlugin(tracing.WithoutMetrics())); err != nil {
+		log.Fatalln("failed to use tracing plugin", err)
+	}
+
+	if err := db.Exec("CREATE EXTENSION IF NOT EXISTS vector").Error; err != nil {
+		log.Fatalln("failed to create extension", err)
+	}
+
+	if err := db.AutoMigrate(&embed.Book{}, &embed.BookEmbedding{}); err != nil {
+		log.Fatalln("failed to migrate", err)
+	}
+
+	if err := db.Exec("CREATE INDEX ON book_embeddings USING hnsw (embedding vector_l2_ops)").Error; err != nil {
+		log.Fatalln("failed to create index", err)
 	}
 }
 
@@ -69,24 +91,11 @@ func main() {
 		),
 	)
 
-	ctx, span := otel.Tracer("").Start(ctx, "main")
+	tracer := otel.Tracer("app")
+	ctx, span := tracer.Start(ctx, "main", oteltrace.WithAttributes(
+		attribute.String("book", bookPath),
+	))
 	defer span.End()
-
-	if err := db.WithContext(ctx).Use(tracing.NewPlugin(tracing.WithoutMetrics())); err != nil {
-		log.Fatalln("failed to use tracing plugin", err)
-	}
-
-	if err := db.WithContext(ctx).Exec("CREATE EXTENSION IF NOT EXISTS vector").Error; err != nil {
-		log.Fatalln("failed to create extension", err)
-	}
-
-	if err := db.WithContext(ctx).AutoMigrate(&embed.Book{}, &embed.BookEmbedding{}); err != nil {
-		log.Fatalln("failed to migrate", err)
-	}
-
-	if err := db.WithContext(ctx).Exec("CREATE INDEX ON book_embeddings USING hnsw (embedding vector_l2_ops)").Error; err != nil {
-		log.Fatalln("failed to create index", err)
-	}
 
 	log.Println("Start")
 
@@ -101,8 +110,16 @@ func main() {
 	defer f.Close()
 
 	var b embed.Book
-	if err := db.WithContext(ctx).FirstOrCreate(&b, embed.Book{Title: "Meditations", Author: "Marcus Aurelius"}).Error; err != nil {
+	if err := db.WithContext(ctx).FirstOrCreate(
+		&b,
+		embed.Book{Title: "Meditations", Author: "Marcus Aurelius"},
+	).Error; err != nil {
 		log.Fatalln("failed to create book", err)
+	}
+
+	var endpoint *url.URL
+	if endpoint, err = url.Parse("http://localhost:11434/api/embeddings"); err != nil {
+		log.Fatalln(err)
 	}
 
 	chunker, err := embed.NewChunker(
@@ -114,41 +131,40 @@ func main() {
 	}
 
 	httpClient := http.Client{Timeout: 30 * time.Second}
-
-	var endpoint *url.URL
-	if endpoint, err = url.Parse("http://localhost:11434/api/embeddings"); err != nil {
-		log.Fatalln(err)
-	}
-
 	eg, err := embed.NewGenerator(&httpClient, endpoint, embed.DefaultModel)
 	if err != nil {
 		log.Fatalln(err)
 	}
+
+	log.Println("Chunking book...")
 
 	chunks, err := chunker.Chunk(ctx, f)
 	if err != nil {
 		log.Fatalln(err)
 	}
 
-	for _, chunk := range chunks {
+	bookEmbeddings := make([]embed.BookEmbedding, 0, len(chunks))
+
+	for _, chunk := range chunks[:10] { // only process the first 10 chunks for now
+		log.Println("Generating embeddings for chunk...")
+
 		vals, err := eg.Generate(ctx, chunk)
 		if err != nil {
 			log.Fatalln(err)
 		}
 
-		be := embed.BookEmbedding{
+		bookEmbeddings = append(bookEmbeddings, embed.BookEmbedding{
 			BookID:    b.ID,
 			Text:      chunk,
 			Embedding: pgvector.NewVector(vals),
-		}
-		if err := db.WithContext(ctx).Save(&be).Error; err != nil {
-			log.Fatalln("failed to save book embedding", err)
-		}
+		})
 	}
 
-	if err := db.WithContext(ctx).Save(&b).Error; err != nil {
-		log.Fatalln("failed to save book", err)
+	if err := db.WithContext(ctx).Save(&bookEmbeddings).Error; err != nil {
+		log.Fatalln("failed to save book embeddings", err)
 	}
+
+	log.Println("Testing query for embeddings...")
 
 	str := "How short lived the praiser and the praised, the one who remembers and the remembered."
 
@@ -157,7 +173,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	var bookEmbeddings []embed.BookEmbedding
+	var bookEmbeddingResults []embed.BookEmbedding
 	db.WithContext(ctx).Clauses(
 		clause.OrderBy{
 			Expression: clause.Expr{
@@ -167,11 +183,14 @@ func main() {
 				},
 			},
 		},
-	).Limit(5).Find(&bookEmbeddings)
+	).Limit(1).Find(&bookEmbeddingResults)
 
-	for _, be := range bookEmbeddings {
-		log.Println(be.Text)
+	for _, be := range bookEmbeddingResults {
+		log.Println(be.Text[:100])
 	}
 
+	// ensure all spans are finished before the program exits
+	span.End()
+	tp.Shutdown(ctx) //nolint:errcheck
 	log.Println("Done")
 }

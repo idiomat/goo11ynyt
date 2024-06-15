@@ -9,6 +9,7 @@ import (
 
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
+	"go.opentelemetry.io/otel/trace"
 )
 
 const DefaultChunkSize = 512
@@ -41,13 +42,11 @@ func NewChunker(chunkSize, chunkOverlap int) (*Chunker, error) {
 }
 
 func (c *Chunker) Chunk(ctx context.Context, rdr io.Reader) ([]string, error) {
-	_, span := otel.Tracer("").Start(ctx, "Chunker.Chunk")
-	defer span.End()
-
-	span.SetAttributes(
+	_, span := otel.Tracer("app").Start(ctx, "Chunker.Chunk", trace.WithAttributes(
 		attribute.Int("chunkSize", c.chunkSize),
 		attribute.Int("chunkOverlap", c.chunkOverlap),
-	)
+	))
+	defer span.End()
 
 	var chunks []string                     // store the final chunks of text
 	var currentChunkBuilder strings.Builder // helps efficiently build the current chunk of text

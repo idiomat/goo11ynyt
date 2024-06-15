@@ -9,6 +9,7 @@ require (
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.27.0
 	go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracegrpc v1.27.0
 	go.opentelemetry.io/otel/sdk v1.27.0
+	go.opentelemetry.io/otel/trace v1.27.0
 	golang.org/x/sync v0.7.0
 	gorm.io/driver/postgres v1.5.9
 	gorm.io/gorm v1.25.10
@@ -32,7 +33,6 @@ require (
 	github.com/prometheus/common v0.48.0 // indirect
 	github.com/prometheus/procfs v0.12.0 // indirect
 	go.opentelemetry.io/otel/metric v1.27.0 // indirect
-	go.opentelemetry.io/otel/trace v1.27.0 // indirect
 	go.opentelemetry.io/proto/otlp v1.2.0 // indirect
 	golang.org/x/crypto v0.23.0 // indirect
 	golang.org/x/net v0.25.0 // indirect

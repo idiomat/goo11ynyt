@@ -12,6 +12,7 @@ import (
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/attribute"
 	"go.opentelemetry.io/otel/codes"
+	"go.opentelemetry.io/otel/trace"
 )
 
 const DefaultModel = "all-minilm"
@@ -48,13 +49,11 @@ func NewGenerator(httpClient *http.Client, endpoint *url.URL, model string) (*Ge
 }
 
 func (g *Generator) Generate(ctx context.Context, text string) ([]float32, error) {
-	ctx, span := otel.Tracer("").Start(ctx, "Generator.Generate")
-	defer span.End()
-
-	span.SetAttributes(
+	ctx, span := otel.Tracer("app").Start(ctx, "Generator.Generate", trace.WithAttributes(
 		attribute.String("model", g.model),
 		attribute.String("httpEndpoint", g.httpEndpoint.String()),
-	)
+	))
+	defer span.End()
 
 	bs, err := json.Marshal(EndpointRequest{
 		Model:  g.model,
